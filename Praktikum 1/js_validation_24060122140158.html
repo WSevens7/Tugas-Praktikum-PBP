@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Tambah Data Produk</title>
+    <style>
+        form {
+            width: 300px;
+            margin: 0 auto;
+            border: 1px solid #000000;
+            padding: 10px;
+        }
+        label {
+            display: block;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body> 
+
+<form id="productForm">
+    <h3>Form Tambah Data Produk</h3>
+    
+    <label>Nama Produk:
+        <input type="text" id="namaProduk" name="namaProduk" minlength="5" maxlength="30" required>
+    </label>
+    
+    <label>Deskripsi:
+        <textarea id="deskripsiProduk" name="deskripsiProduk" minlength="5" maxlength="100" required></textarea>
+    </label>
+    
+    <label>Kategori:
+        <select id="kategori" name="kategori" required>
+            <option value="">--Pilih Kategori--</option>
+            <option value="Baju">Baju</option>
+            <option value="Elektronik">Elektronik</option>
+            <option value="Alat Tulis">Alat Tulis</option>
+        </select>
+    </label>
+    
+    <label>Sub Kategori:
+        <select id="subKategori" name="subKategori" required>
+            <option value="">--Pilih Sub Kategori--</option>
+        </select>
+    </label>
+    
+    <label>Harga Satuan:
+        <input type="number" id="hargaSatuan" name="hargaSatuan" required>
+    </label>
+    
+    <label>Grosir:
+        <input type="radio" id="grosirYa" name="grosir" value="Ya"> Ya
+        <input type="radio" id="grosirTidak" name="grosir" value="Tidak" checked> Tidak
+    </label>
+    
+    <label id="hargaGrosirLabel" style="display: none;">Harga Grosir:
+        <input type="number" id="hargaGrosir" name="hargaGrosir">
+    </label>
+    
+    <label>Jasa Kirim:</label>
+    <label><input type="checkbox" name="jasaKirim" value="JNE"> JNE</label>
+    <label><input type="checkbox" name="jasaKirim" value="TIKI"> TIKI</label>
+    <label><input type="checkbox" name="jasaKirim" value="SiCepat"> SiCepat</label>
+    <label><input type="checkbox" name="jasaKirim" value="Ninja Express"> Ninja Express</label>
+    <label><input type="checkbox" name="jasaKirim" value="Wahana"> Wahana</label>
+    
+    <label>Captcha: 
+        <span id="captchaCode"></span>
+        <input type="text" id="captchaInput" name="captchaInput" maxlength="5" required>
+    </label>
+    
+    <button type="submit">Submit</button>
+    <button type="reset">Reset</button>
+</form>
+
+<script>
+    const form = document.getElementById('productForm');
+    const kategori = document.getElementById('kategori');
+    const subKategori = document.getElementById('subKategori');
+    const grosirYa = document.getElementById('grosirYa');
+    const hargaGrosirLabel = document.getElementById('hargaGrosirLabel');
+    const captchaCode = document.getElementById('captchaCode');
+    const captchaInput = document.getElementById('captchaInput');
+
+    const subKategoriOptions = {
+        'Baju': ['Baju Pria', 'Baju Wanita', 'Baju Anak'],
+        'Elektronik': ['Mesin Cuci', 'Kulkas', 'AC'],
+        'Alat Tulis': ['Kertas', 'Map', 'Pulpen']
+    };
+
+    kategori.addEventListener('change', function() {
+        const selectedKategori = kategori.value;
+        subKategori.innerHTML = '<option value="">--Pilih Sub Kategori--</option>';
+        if (subKategoriOptions[selectedKategori]) {
+            subKategoriOptions[selectedKategori].forEach(function(item) {
+                const option = document.createElement('option');
+                option.value = item;
+                option.textContent = item;
+                subKategori.appendChild(option);
+            });
+        }
+    });
+
+    grosirYa.addEventListener('change', function() {
+        hargaGrosirLabel.style.display = grosirYa.checked ? 'block' : 'none';
+    });
+
+    function generateCaptcha() {
+        let captcha = '';
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        for (let i = 0; i < 5; i++) {
+            captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        captchaCode.textContent = captcha;
+    }
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const selectedJasaKirim = form.querySelectorAll('input[name="jasaKirim"]:checked');
+        if (selectedJasaKirim.length < 3) {
+            alert('Minimal 3 jasa kirim yang dipilih.');
+            return;
+        }
+
+        if (captchaInput.value !== captchaCode.textContent) {
+            alert('Captcha tidak sesuai.');
+            generateCaptcha();
+            return;
+        }
+
+        form.submit();
+    });
+
+    window.onload = generateCaptcha;
+    
+</script>
+</body>
+</html>
