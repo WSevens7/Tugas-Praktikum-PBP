@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Login</title>
+
+  <script>
+    function validateForm() {
+      var name = document.forms["formLogin"]["fusername"].value;
+      var password = document.forms["formLogin"]["fpassword"].value;
+
+      console.log("name", name);
+      console.log("password", password);
+
+      if (name.checkValidity() == false || password.checkValidity() == false) {
+        document.getElementById("errUsername").innerHTML = name.validationMessage;
+        document.getElementById("errPassword").innerHTML = password.validationMessage;
+        return false;
+      }
+    }
+  </script>
+</head>
+<body>
+  <h2>Login</h2>
+  <form name="formLogin" action="process.php" onsubmit="return validateForm()" method="post">
+    Name: <input type="text" name="fusername" required="required" maxlength="10" id="name"><br>
+    <span id="errUsername"></span><br>
+    Password: <input type="password" name="fpassword" required="required" maxlength="10" id="password"><br>
+    <span id="errPassword"></span><br>
+    <input type="submit" value="Submit">
+  </form>
+</body>
+</html>

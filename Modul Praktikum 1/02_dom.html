@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Belajar Javascript</title>
+</head>
+<body>
+  <h2>Akses elemen menggunakan getElementByTagName</h2>
+  <p>Belajar Javascript</p>
+  <p>Belajar Document Object Model</p>
+  <p id="demo"></p>
+
+  <script>
+    var element = document.getElementsByTagName("p");
+    document.getElementById("demo").innerHTML = "Isi teks[0] : " + element[0].innerHTML + "<br>" + "Isi teks[1] : " + element[1].innerHTML;
+
+    console.log(element);
+  </script>
+</body>
+</html>

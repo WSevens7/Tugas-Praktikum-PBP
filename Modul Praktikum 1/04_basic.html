@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Belajar JavaScript</title>
+    <script>
+      function myFunction() {
+        document.getElementById("paragraf").innerHTML =
+          "Hypertext Markup Language";
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Javascript</h1>
+    <p id="paragraf">HTML</p>
+    <script>
+      var page = "Home";
+      if (page == "Home") {
+        document.write("<H1>You selected Home</H1>");
+      } else if (page == "About") {
+        document.write("You selected About");
+      } else if (page == "News") {
+        document.write("You selected News");
+      } else if (page == "Login") {
+        document.write("You selected Login");
+      } else if (page == "Links") {
+        document.write("You selected Links");
+      }
+
+      document.getElementById("paragraf").innerText = "<h1>Hypertext Markup Language</h1>";
+    </script>
+    <p id="paragraf1">HTML</p>
+  </body>
+</html>

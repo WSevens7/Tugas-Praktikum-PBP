@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Belajar JavaScript</title>
+</head>
+<body>
+  <h1>Fungsi</h1>
+
+  <script>
+    var myArray = [];
+    myArray[0] = "5";
+    myArray[1] = "10";
+    myArray[2] = "15";
+
+    document.write("Jumlah seluruh elemen array adalah " + sumArray(myArray));
+
+    function sumArray(arr){
+      var sum = 0;
+      for (var i=0; i < arr.length; i++){
+        console.log(arr[i]);
+        sum += arr[i];
+      }
+      return sum;
+    }
+
+    document.write("5" + 5);
+    // var test;
+    // console.log(test == null);
+  </script>
+</body>
+</html>

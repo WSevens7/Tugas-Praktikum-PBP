@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Belajar Javascript</title>
+</head>
+<body>
+  <p>Adding Event Handler</p>
+  <button id="btn01" type="button">Click Me 1</button>
+  <button id="btn02" type="button">Click Me 2</button>
+  <p id="demo"></p>
+
+  <script>
+    document.getElementById("btn01").addEventListener("click", () => {
+      document.getElementById("demo").innerHTML = "Sukses 01";
+    });
+
+    document.getElementById("btn02").onclick = function() {
+      document.getElementById("demo").innerHTML = "Sukses 02";
+    };
+  </script>
+</body>
+</html>
